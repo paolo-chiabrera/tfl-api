@@ -27,9 +27,9 @@ const manifest = {
   }],
   registrations: [
     {
-      plugin: 'Inert'
+      plugin: 'inert'
     }, {
-      plugin: 'Vision'
+      plugin: 'vision'
     }, {
       plugin: {
         register: 'hapi-swagger',
