@@ -1,7 +1,8 @@
 'use strict';
 
 const Lab = require('lab');
-const Code = require('code');
+const chai = require('chai');
+const expect = chai.expect;
 const Manifest = require('../manifest');
 
 
@@ -12,14 +13,14 @@ lab.experiment('Manifest', () => {
 
   lab.test('it gets manifest data', (done) => {
 
-    Code.expect(Manifest.get('/')).to.be.an.object();
+    expect(Manifest.get('/')).to.be.an('object');
     done();
   });
 
 
   lab.test('it gets manifest meta data', (done) => {
 
-    Code.expect(Manifest.meta('/')).to.match(/this file defines the plot device/i);
+    expect(Manifest.meta('/')).to.match(/this file defines the plot device/i);
     done();
   });
 });

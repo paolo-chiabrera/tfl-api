@@ -21,12 +21,7 @@ exports.register = function (server, options, next) {
     method: 'GET',
     path: '/line-status',
     handler: function (request, reply) {
-      reply({
-        routes: [
-          '/line-status/lines',
-          '/line-status/status/{lineCode?}'
-        ]
-      });
+      reply({ message: 'Welcome to the TFL Line Status API' });
     }
   });
 
@@ -43,7 +38,18 @@ exports.register = function (server, options, next) {
 
   server.route({
     method: 'GET',
-    path: '/line-status/status/{lineCode?}',
+    path: '/line-status/status',
+    config: {
+      handler: lineStatus.getLineStatus,
+      description: 'Get all the lines status',
+      notes: 'Returns an array with all the lines status',
+      tags: ['api']
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/line-status/status/{lineCode}',
     config: {
       handler: lineStatus.getLineStatus,
       description: 'Get the lines status',
@@ -51,7 +57,7 @@ exports.register = function (server, options, next) {
       tags: ['api'],
       validate: {
         params: {
-          lineCode: Joi.string().optional().allow(lineStatus._tflLineStatus.getLines())
+          lineCode: Joi.string().required().valid(lineStatus._tflLineStatus.getLines())
         }
       }
     }
@@ -63,12 +69,7 @@ exports.register = function (server, options, next) {
     method: 'GET',
     path: '/prediction-summary',
     handler: function (request, reply) {
-      reply({
-        routes: [
-          '/prediction-summary/lines',
-          '/prediction-summary/summary/{lineCode?}'
-        ]
-      });
+      reply({ message: 'Welcome to the TFL Prediction Summary API' });
     }
   });
 
@@ -85,15 +86,26 @@ exports.register = function (server, options, next) {
 
   server.route({
     method: 'GET',
-    path: '/prediction-summary/summary/{lineCode?}',
+    path: '/prediction-summary/summary',
     config: {
       handler: predictionSummary.getPredictionSummary,
-      description: 'Get a specific prediction summary',
-      notes: 'Returns the prediction summary object based on the required lineCode',
+      description: 'Get all the prediction summary',
+      notes: 'Returns an array with all the prediction summaries',
+      tags: ['api']
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/prediction-summary/summary/{lineCode}',
+    config: {
+      handler: predictionSummary.getPredictionSummary,
+      description: 'Get a prediction summary',
+      notes: 'Returns an object with the specific prediction summary',
       tags: ['api'],
       validate: {
         params: {
-          lineCode: Joi.string().optional().allow(predictionSummary._tflPredictionSummary.getLines())
+          lineCode: Joi.string().required().valid(predictionSummary._tflPredictionSummary.getLines())
         }
       }
     }

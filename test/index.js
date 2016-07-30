@@ -1,7 +1,8 @@
 'use strict';
 
 const Lab = require('lab');
-const Code = require('code');
+const chai = require('chai');
+const expect = chai.expect;
 const Composer = require('../index');
 
 
@@ -14,7 +15,7 @@ lab.experiment('App', () => {
 
         Composer((err, composedServer) => {
 
-            Code.expect(composedServer).to.be.an.object();
+            expect(composedServer).to.be.an('object');
             done(err);
         });
     });
