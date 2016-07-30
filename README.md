@@ -23,6 +23,9 @@ npm start
 
 ## Endpoints
 
+### /documentation
+Swagger documentation
+
 ### /line-status/lines
 Returns an array of valid line codes
 ```
@@ -91,10 +94,6 @@ Returns an array of prediction summaries or an object of the specific line reque
   ]
 }
 ```
-
-## Documentation
-
-http://tfl.d3lirium.eu/documentation (Swagger)
 
 ## Testing
 
