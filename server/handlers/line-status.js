@@ -1,6 +1,6 @@
 'user strict';
 
-const Boom = require('Boom');
+const Boom = require('boom');
 
 const TflLineStatus = require('tfl-line-status');
 const tflLineStatus = new TflLineStatus();

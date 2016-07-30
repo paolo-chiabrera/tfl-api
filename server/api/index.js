@@ -1,6 +1,6 @@
 'use strict';
 
-const Joi = require('Joi');
+const Joi = require('joi');
 
 const lineStatus = require('../handlers/line-status');
 const predictionSummary = require('../handlers/prediction-summary');
