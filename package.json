@@ -28,7 +28,7 @@
     "good": "^7.0.1",
     "good-console": "^6.1.2",
     "good-squeeze": "^4.0.0",
-    "hapi": "13.x.x",
+    "hapi": "^13.5.3",
     "hapi-swagger": "^6.2.0",
     "hoek": "3.x.x",
     "inert": "^4.0.1",
@@ -39,6 +39,7 @@
     "vision": "^4.1.0"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "code": "2.x.x",
     "lab": "10.x.x",
     "nodemon": "1.x.x",
