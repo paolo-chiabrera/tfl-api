@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "lab -l -c -L",
-    "test-coverage": "lab -l -c -L -r console -r lcov | ./node_modules/.bin/coveralls"
+    "test-coveralls": "lab -l -c -L -r console -o stdout -r lcov -o test/artifacts/lcov.info"
   },
   "repository": {
     "type": "git",

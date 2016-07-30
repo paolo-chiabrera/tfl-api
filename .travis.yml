@@ -3,4 +3,5 @@ node_js:
   - v6
   - v5
   - v4
-script: npm run test-coverage
+script: npm run test-coveralls
+after_success: cat ./test/artifacts/lcov.info | ./node_modules/coveralls/bin/coveralls.js
