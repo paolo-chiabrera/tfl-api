@@ -74,16 +74,11 @@ lab.experiment('Index Plugin', () => {
       url: '/line-status'
     };
 
-    const routes ={
-      routes: [
-        '/line-status/lines',
-        '/line-status/status/{lineCode?}'
-      ]
-    };
+    const expected = { message: 'Welcome to the TFL Line Status API' };
 
     server.inject(request, (response) => {
       expect(response.statusCode).to.equal(200);
-      expect(response.result).to.eql(routes);
+      expect(response.result).to.eql(expected);
 
       done();
     });
@@ -113,16 +108,11 @@ lab.experiment('Index Plugin', () => {
       url: '/prediction-summary'
     };
 
-    const routes = {
-      routes: [
-        '/prediction-summary/lines',
-        '/prediction-summary/summary/{lineCode?}'
-      ]
-    };
+    const expected = { message: 'Welcome to the TFL Prediction Summary API' };
 
     server.inject(request, (response) => {
       expect(response.statusCode).to.equal(200);
-      expect(response.result).to.eql(routes);
+      expect(response.result).to.eql(expected);
 
       done();
     });
