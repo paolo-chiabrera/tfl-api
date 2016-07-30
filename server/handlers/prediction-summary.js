@@ -1,6 +1,6 @@
 'user strict';
 
-const Boom = require('Boom');
+const Boom = require('boom');
 
 const TflPredictionSummary = require('tfl-prediction-summary');
 const tflPredictionSummary = new TflPredictionSummary();
