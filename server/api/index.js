@@ -10,9 +10,15 @@ exports.register = function (server, options, next) {
   server.route({
     method: 'GET',
     path: '/',
-    handler: function (request, reply) {
-      reply({ message: 'Welcome to the TFL API' });
-    }
+    config: {
+      handler: function (request, reply) {
+        reply({ message: 'Welcome to the TFL API' });
+      },
+      cache: {
+        expiresIn: 3600 * 1000,
+        privacy: 'public'
+      }
+    }    
   });
 
   // line-status
@@ -20,8 +26,15 @@ exports.register = function (server, options, next) {
   server.route({
     method: 'GET',
     path: '/line-status',
-    handler: function (request, reply) {
-      reply({ message: 'Welcome to the TFL Line Status API' });
+    config: {
+      handler: lineStatus.getLineStatus,
+      description: 'Get all the line statuses',
+      notes: 'Returns an array with all the lines status',
+      tags: ['api'],
+      cache: {
+        expiresIn: 30 * 1000,
+        privacy: 'private'
+      }
     }
   });
 
@@ -30,35 +43,32 @@ exports.register = function (server, options, next) {
     path: '/line-status/lines',
     config: {
       handler: lineStatus.getLines,
-      description: 'Get all the line codes',
+      description: 'Get the available line codes',
       notes: 'Returns an array of line codes',
-      tags: ['api']
+      tags: ['api'],
+      cache: {
+        expiresIn: 3600 * 1000,
+        privacy: 'private'
+      }
     }
   });
 
   server.route({
     method: 'GET',
-    path: '/line-status/status',
+    path: '/line-status/lines/{lineCode}',
     config: {
       handler: lineStatus.getLineStatus,
-      description: 'Get all the lines status',
-      notes: 'Returns an array with all the lines status',
-      tags: ['api']
-    }
-  });
-
-  server.route({
-    method: 'GET',
-    path: '/line-status/status/{lineCode}',
-    config: {
-      handler: lineStatus.getLineStatus,
-      description: 'Get the lines status',
+      description: 'Get a specific lines status, based on the lineCode',
       notes: 'Returns the line status object for the required line',
       tags: ['api'],
       validate: {
         params: {
           lineCode: Joi.string().required().valid(lineStatus._tflLineStatus.getLines())
         }
+      },
+      cache: {
+        expiresIn: 30 * 1000,
+        privacy: 'private'
       }
     }
   });
@@ -68,8 +78,15 @@ exports.register = function (server, options, next) {
   server.route({
     method: 'GET',
     path: '/prediction-summary',
-    handler: function (request, reply) {
-      reply({ message: 'Welcome to the TFL Prediction Summary API' });
+    config: {
+      handler: predictionSummary.getPredictionSummary,
+      description: 'Get all the prediction summaries',
+      notes: 'Returns an array with all the prediction summaries',
+      tags: ['api'],
+      cache: {
+        expiresIn: 30 * 1000,
+        privacy: 'private'
+      }
     }
   });
 
@@ -78,35 +95,32 @@ exports.register = function (server, options, next) {
     path: '/prediction-summary/lines',
     config: {
       handler: predictionSummary.getLines,
-      description: 'Get all the line codes',
+      description: 'Get the available line codes',
       notes: 'Returns an array of line codes',
-      tags: ['api']
+      tags: ['api'],
+      cache: {
+        expiresIn: 3600 * 1000,
+        privacy: 'private'
+      }
     }
   });
 
   server.route({
     method: 'GET',
-    path: '/prediction-summary/summary',
+    path: '/prediction-summary/lines/{lineCode}',
     config: {
       handler: predictionSummary.getPredictionSummary,
-      description: 'Get all the prediction summary',
-      notes: 'Returns an array with all the prediction summaries',
-      tags: ['api']
-    }
-  });
-
-  server.route({
-    method: 'GET',
-    path: '/prediction-summary/summary/{lineCode}',
-    config: {
-      handler: predictionSummary.getPredictionSummary,
-      description: 'Get a prediction summary',
+      description: 'Get a specific prediction summary, based on the lineCode',
       notes: 'Returns an object with the specific prediction summary',
       tags: ['api'],
       validate: {
         params: {
           lineCode: Joi.string().required().valid(predictionSummary._tflPredictionSummary.getLines())
         }
+      },
+      cache: {
+        expiresIn: 30 * 1000,
+        privacy: 'private'
       }
     }
   });
