@@ -114,24 +114,24 @@ lab.experiment('Index Plugin', () => {
     });
   });
 
-  lab.test('it returns the routes', (done) => {
-    const request = {
-      method: 'GET',
-      url: '/prediction-summary'
-    };
-
-    server.inject(request, (response) => {
-      expect(response.statusCode).to.equal(200);
-      expect(response.result).to.be.an('array');
-
-      done();
-    });
-  });
+  // lab.test('it returns the routes', (done) => {
+  //   const request = {
+  //     method: 'GET',
+  //     url: '/prediction-summary'
+  //   };
+  //
+  //   server.inject(request, (response) => {
+  //     expect(response.statusCode).to.equal(200);
+  //     expect(response.result).to.be.an('array');
+  //
+  //     done();
+  //   });
+  // });
 
   lab.test('it returns a specific line summary object', (done) => {
     const request = {
       method: 'GET',
-      url: '/prediction-summary/lines/B'
+      url: '/prediction-summary/lines/W'
     };
 
     server.inject(request, (response) => {
