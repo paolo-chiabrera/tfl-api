@@ -35,11 +35,12 @@ const manifest = {
       plugin: {
         register: 'hapi-swagger',
         options: {
+          schemes: ['https','http'],
+          host: 'api.tfl.d3lirium.eu',
           info: {
             title: 'TFL API Documentation',
-            version: Pack.version,
-            schemes: ['https','http'],
-            host: 'api.tfl.d3lirium.eu'
+            version: Pack.version
+
           }
         }
       }
