@@ -10,12 +10,6 @@
 
 Maintained by [Paolo Chiabrera](https://github.com/paolo-chiabrera).
 
-## Install
-
-```
-$ npm i tfl-api
-```
-
 ## Usage
 
 ```
