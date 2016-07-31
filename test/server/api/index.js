@@ -74,11 +74,23 @@ lab.experiment('Index Plugin', () => {
       url: '/line-status'
     };
 
-    const expected = { message: 'Welcome to the TFL Line Status API' };
+    server.inject(request, (response) => {
+      expect(response.statusCode).to.equal(200);
+      expect(response.result).to.be.an('array');
+
+      done();
+    });
+  });
+
+  lab.test('it returns a specific line status object', (done) => {
+    const request = {
+      method: 'GET',
+      url: '/line-status/lines/B'
+    };
 
     server.inject(request, (response) => {
       expect(response.statusCode).to.equal(200);
-      expect(response.result).to.eql(expected);
+      expect(response.result).to.be.an('object');
 
       done();
     });
@@ -108,11 +120,23 @@ lab.experiment('Index Plugin', () => {
       url: '/prediction-summary'
     };
 
-    const expected = { message: 'Welcome to the TFL Prediction Summary API' };
+    server.inject(request, (response) => {
+      expect(response.statusCode).to.equal(200);
+      expect(response.result).to.be.an('array');
+
+      done();
+    });
+  });
+
+  lab.test('it returns a specific line summary object', (done) => {
+    const request = {
+      method: 'GET',
+      url: '/prediction-summary/lines/B'
+    };
 
     server.inject(request, (response) => {
       expect(response.statusCode).to.equal(200);
-      expect(response.result).to.eql(expected);
+      expect(response.result).to.be.an('object');
 
       done();
     });
